@@ -1,0 +1,1448 @@
+@import 'addons/reset'
+//@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-light.ttf)
+  font-weight: 300
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-regular.ttf)
+  font-weight: 400
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-bold.ttf)
+  font-weight: 700
+  font-style: normal
+
+@font-face
+  font-family: 'Lato'
+  src: url(../fonts/lato-black.ttf)
+  font-weight: 900
+  font-style: normal
+
+@font-face
+  font-family: "Font Awesome 5 Brands"
+  src: url(../webfonts/fa-brands-400.ttf)
+  src: url(../webfonts/fa-brands-400.woff)
+  src: url(../webfonts/fa-brands-400.woff2)
+@font-face
+  font-family: "Font Awesome 5 Solids"
+  src: url(../webfonts/fa-solid-900.ttf)
+  src: url(../webfonts/fa-solid-900.woff)
+  src: url(../webfonts/fa-solid-900.woff2)
+@font-face
+  font-family: "Font Awesome 5 Free"
+  src: url(../webfonts/fa-regular-400.ttf)
+  src: url(../webfonts/fa-regular-400.woff)
+  src: url(../webfonts/fa-regular-400.woff2)
+
+$ff: 'Lato', sans-serif
+$bc_one: #222222
+$bc_two: #F1E4E6
+$bc_three: #FFFFFF
+$bc_four: #E1E1E1
+$bc_five: #F8F3F4
+$bc_seven: #F5F3F3
+
+$text_search: #222224
+$border_one: #F16D7F
+$li_one: #000000
+$li_two: #6F6E6E
+$icon: #E8E8E8
+$subtitle: #9F9F9F
+$products_back: #F8F8F8
+$products_txt: #5D5D5D
+$features_txt: #FBFBFB
+$active: #ffb200
+$breadcrumbs: #636363
+$border_two: #EBEBEB
+$pagination: #C4C4C4
+$border_three: #EAEAEA
+$card_subtitle: #4D4D4D
+$card_description: #5E5E5E
+$bc_prod_banner: #F7F7F7
+$slide_btn: rgba(42,42,42,0.15)
+$border_four: #A4A4A4
+$quote_btn: #4A4A4A
+$regist_input_txt: #B1B1B1
+$border_five: #E2E2E2
+
+
+
+%font_famile_site
+  font-family: 'Lato', sans-serif
+  font-style: normal
+
+%flex_spbetween
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+%padding_content
+  padding: 0 230px / 1600px * 100%
+
+%icon
+  border: none
+  background-color: $bc_one
+  fill: $icon
+  &:hover
+    fill: $border_one
+    cursor: pointer
+  &:active
+    fill: $active
+
+%link
+  text-decoration: none
+  text-transform: uppercase
+
+%dark_back
+  background-color: rgba(33,22,22,0.65)
+  &:hover
+    background-color: rgba(33,22,22,0.45)
+  &:active
+    background-color: rgba(33,22,22,0.65)
+
+%column_content
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+%catalog-submenu
+  position: absolute
+  top: 100%
+  left: 0
+  width: 100%
+  z-index: 10
+  -webkit-transition: 0.2s ease-in-out
+  -moz-transition: 0.2s ease-in-out
+  -o-transition: 0.2s ease-in-out
+  transition: 0.2s ease-in-out
+  background-color: $bc_three
+  box-shadow: 0 0 10px rgba(0,0,0,0.5)
+  visibility: hidden
+
+@mixin input ($width, $back-color, $txt-color)
+  font-weight: 400
+  line-height: 16.8px
+  font-size: 14px
+  box-sizing: border-box
+  height: 49px
+  width: $width
+  background-color: $back-color
+  color: $txt-color
+
+@mixin icon ($url, $height, $width)
+  background: $url no-repeat
+  height: $height
+  max-width: $width
+  border: none
+  &:hover
+    cursor: pointer
+
+@mixin txt ($fs, $fw, $lh, $clr)
+  font-size: $fs
+  font-weight: $fw
+  line-height: $lh
+  color: $clr
+
+@mixin size ($x, $y)
+  width: $x
+  min-height: $y
+
+@mixin itemBkg ($url)
+  background-image: $url
+  background-position: center center
+
+
+@mixin line ($width, $thickness, $color, $mar-bot)
+  width: $width
+  border: 0
+  border-bottom: $thickness solid $color
+  margin: 0 0 $mar-bot 0
+
+/* ========== all ========== */
+
+body
+  @extend %font_famile_site
+
+div.container
+  max-width: 1600px
+  width: 100%
+  margin: 0 auto
+
+/* ========== header ========== */
+
+.page-header
+  @extend %flex_spbetween
+  @extend %padding_content
+  max-width: 1600px
+  box-sizing: border-box
+  min-height: 75px
+  background-color: $bc_one
+  position: sticky
+  top: 0
+  z-index: 10
+  .logo-and-search
+    flex-grow: 1
+    display: flex
+    justify-content: flex-start
+    align-items: flex-end
+    //max-width: 950px / 1600px * 100%
+    width: 100%
+    height: 38px / 75px * 100%
+
+    .logo
+      padding-bottom: 6px
+      margin-right: 41px
+
+    .search-container
+      flex-grow: 1
+      display: flex
+      flex-wrap: nowrap
+      justify-content: flex-start
+
+    .search-icon
+      @extend %icon
+
+    .search-form
+      display: flex
+      justify-content: flex-start
+      visibility: hidden
+      width: 100%
+
+
+    .search-icon + .search-form:active,
+    .search-icon:focus + .search-form,
+    .search-icon:focus-within + .search-form,
+    .search-text:focus-within,
+    .search-btn:focus-within,
+    .search-form:focus-within
+      visibility: visible
+
+    .search-text
+      @include input (90%, $bc_four, $text_search)
+      border-radius: 25px 0 0 25px
+      margin-left: 10px
+      margin-right: 0
+      padding: 0 0 0 25px
+      border: 0
+      margin-bottom: 2px
+
+
+    .search-btn
+      @include input(10%, $border_one, $bc_three)
+      min-width: 80px
+      border-radius: 0 25px 25px 0
+      text-align: center
+      padding: 0
+      border: 0
+      &:hover
+        background-color: #df5365
+        cursor: pointer
+      &:active
+        background-color: $active
+
+
+  .page-header-btn
+    @extend %flex_spbetween
+    width: 168px
+    height: 38px
+
+    .menu-btn,
+    .account-btn,
+    .cart-btn
+      @extend %icon
+
+.cart
+  position: relative
+
+.product-bio
+  display: flex
+
+.product-desc
+  max-width: 150px
+
+.product-quantity
+  margin-top: 15px
+  font-size: 0.75em
+
+.product-single-price
+  color: #474747
+  font-size: 0.5em
+
+.right-block
+  text-align: right
+
+.product-price
+  margin-left: 30px
+
+.del-btn
+  margin-top: 5px
+  background-color: #2f2a2d
+  padding: 5px 15px
+  border: 1px solid transparent
+  color: #fafafa
+  border-radius: 5px
+  transition: all ease-in-out .4s
+  cursor: pointer
+
+.cart-block
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.62)
+  border-radius: 5px
+  box-sizing: border-box
+  right: 0
+  top: 130%
+  position: absolute
+  background-color: white
+  padding: 20px
+  color: black
+  width: 300px
+
+
+.invisible
+  display: none
+
+
+
+/* ========== navbar ========== */
+
+.for-menu
+  position: sticky
+  top: 75px
+  z-index: 10
+  max-width: calc(100% - 230px)
+  width: 100%
+  display: flex
+  justify-content: flex-end
+
+.menu
+  @extend %catalog-submenu
+  position: absolute
+  left: 100%
+  display: flex
+  flex-direction: column
+  @include size (230px, 767px)
+  background-color: $bc_three
+  visibility: hidden
+
+  .link-menu,
+  .sub-link-menu
+    text-decoration: none
+
+  .ul-menu
+    margin: 10px 0 0 34px / 230px * 100%
+
+    li
+      margin-bottom: 24px
+      margin-top: 24px
+
+    .sub-ul-menu
+      margin-left: 20px
+
+      li
+        margin-top: 16px
+        margin-bottom: 6px
+
+    .link-menu
+      color: $border_one
+      text-transform: uppercase
+
+    .li-colored
+      color: $li_one
+
+    .sub-link-menu
+      color: $li_two
+
+.dropdown
+  visibility: visible
+  z-index: 10
+
+.span-colored
+  display: inline
+  color: $border_one
+
+.close-btn
+  @extend %icon
+  background-color: $bc_three
+  fill: $li_two
+  margin: 16px 6.96% 0 88.26%
+  &:hover
+    fill: $bc_one
+  &:active
+    fill: $li_two
+
+
+/* ========== banner ========== */
+
+.blackout
+  filter: brightness(60%)
+
+.banner
+  min-height: 764px
+  display: flex
+  justify-content: flex-start
+  background-color: $bc_two
+  align-items: flex-end
+  max-width: 1600px
+  width: 100%
+  padding-left: 230px / 1600px * 100%
+  box-sizing: border-box
+
+.for-fashionable-man
+  width: 50% - 135px / 1600px * 100%
+  display: flex
+  justify-content: flex-start
+
+.banner-title
+  width: 50%
+  display: flex
+  @include size(405px, 93px)
+  flex-direction: column
+  justify-content: center
+  border-left: 12px solid $border_one
+  min-height: 92px
+  margin: 0 0 381px 63px / 1600px * 100%
+  padding-left: 16px
+  box-sizing: border-box
+  align-items: start
+
+  .banner-link-title
+    @extend %link
+    & .banner-txt-subtitle
+      display: block
+
+.banner-txt-title
+  @include txt(48px, 900, 57.6px, $bc_one)
+
+.banner-txt-subtitle
+  @include txt(32px, 700, 38.4px, $bc_one)
+
+
+/* ========== categories ========== */
+
+.categories
+  @extend %padding_content
+  padding-bottom: 10px
+  padding-top: 65px
+  min-height: 470px
+  background-color: $bc_three
+  @extend %flex_spbetween
+  align-items: flex-start
+  flex-wrap: wrap
+
+  .item-for-women
+    @include itemBkg(url(../image/item-for_women.png))
+
+  .item-for-men
+    @include itemBkg(url(../image/item-for_men.png))
+
+  .item-for-kids
+    @include itemBkg(url(../image/item-for_kids.png))
+
+
+  .item-for-women,
+  .item-for-men,
+  .item-for-kids
+    @include size(100%, 260px)
+    max-width: 360px / 1140px * 100%
+
+
+  .item-accessories
+    @include itemBkg(url(../image/item-accessories.png))
+    @include size(100%, 180px)
+    margin-top: 25px
+
+  .categories-item
+    @extend %flex_spbetween
+    & .blackout-layer
+      display: flex
+      @extend %dark_back
+      width: 100%
+      height: 100%
+      min-height: inherit
+    & .blackout-layer-accessories
+      display: flex
+      @extend %dark_back
+      width: 100%
+      height: 100%
+      min-height: inherit
+
+
+
+.link-item
+  @include size(100%, 100%)
+  @extend %link
+  @extend %column_content
+
+  .categories-item-subtitle
+    @include txt(16px, 400, 19.2px, $bc_three)
+
+  .categories-item-title
+    @include txt(24px, 700, 28.8px, $border_one)
+
+/* ========== products ========== */
+
+.products
+  @extend %column_content
+  @extend %padding_content
+  min-height: 1460px
+  background-color: $bc_three
+
+  .products-title
+    padding-top: 40px
+    box-sizing: border-box
+    text-align: center
+    @include txt(30px, 400, 36px, $bc_one)
+    & p
+      @include txt(14px, 400, 16.8px, $subtitle)
+
+.products-block
+  @extend %flex_spbetween
+  flex-wrap: wrap
+
+.products-block-modal
+  justify-content: space-around
+
+.products-item
+  @extend %column_content
+  align-items: flex-start
+  justify-content: flex-start
+  @include size(360px, 581px)
+  background-color: $products_back
+  margin-top: 30px
+
+  .for-add-cart-btn
+    position: relative
+    @include size(360px, 419px)
+
+.add-cart-btn
+  @extend %flex_spbetween
+  position: absolute
+  width: 165px
+  height: 52px
+  padding: 15px
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  background-color: rgba(0, 0, 0, .0)
+  color: $bc_three
+  font-size: 16px
+  border: 1px solid $bc_three
+  cursor: pointer
+  text-align: center
+  visibility: hidden
+  & svg
+    fill: $bc_three
+.add-cart-btn:hover
+  border: 1px solid $border_one
+  color: $border_one
+  & svg
+    fill: $border_one
+.add-cart-btn:active
+  border-color: $active
+  color: $active
+  & svg
+    fill: $active
+
+.for-add-cart-btn:hover .add-cart-btn
+  visibility: visible
+
+.for-add-cart-btn:hover .products-item-photo
+  filter: brightness(33%)
+
+.products-btn
+  margin-top: 48px
+  margin-bottom: 45px
+  width: 212px
+  height: 48px
+  border: 1px solid $border_one
+  color: $border_one
+  background-color: $bc_three
+  &:hover
+    color: $bc_three
+    background-color: $border_one
+    cursor: pointer
+  &:active
+    background-color: $active
+    border-color: $active
+
+.products-item .products-link
+  text-decoration: none
+  @extend %column_content
+  align-items: flex-start
+  justify-content: flex-start
+  margin: 25px 29px 20px 16px
+  &:hover
+    text-decoration: underline
+  & .products-item-title
+    text-transform: uppercase
+  @include txt(13px, 400, 15.6px, $li_one)
+  & .products-item-txt
+    @include txt(14px, 300, 16.8px, $products_txt)
+    margin-top: 13px
+  & .products-item-price
+    @include txt(16px, 400, 19.2px, $border_one)
+    margin-top: 18px
+
+/* ========== features ========== */
+
+.features
+  @extend %padding_content
+  @extend %flex_spbetween
+  min-height: 341px
+  background-color: $text_search
+
+  .features-item
+    @extend %column_content
+    @include size(360px, 134px)
+
+    .features-item-icon
+      fill: $border_one
+
+    .features-item-title
+      margin-top: 28px
+      @include txt(20px, 400, 24px, $features_txt)
+
+    .features-item-txt
+      margin-top: 16px
+      @include txt(14px, 300, 17px, $features_txt)
+      text-align: center
+
+/* ========== feedback ========== */
+
+.feedback
+  @extend %flex_spbetween
+  @extend %padding_content
+  background-image: url(../image/feedback-cover.png)
+  min-height: 448px
+
+  .feedback-review
+    @extend %column_content
+    @include size(360px, 225px)
+    margin-bottom: 60px
+
+    .feedback-review-avatar
+      background-image: url(../image/feedback-avatar.png)
+      height: 96px
+      width: 96px
+
+    .feedback-review-txt
+      margin-top: 30px
+      text-align: center
+      @include txt(20px, 400, 24px, $text_search)
+
+  .subscribing
+    @extend %column_content
+    @include size(557px, 142px)
+
+    .subscribing-title
+      text-transform: uppercase
+      @include txt(24px, 700, 40px, $text_search)
+
+    .subscribing-subtitle
+      text-transform: uppercase
+      @include txt(18px, 400, 30px, $text_search)
+
+    .subscribing-form
+      margin-top: 32px
+
+      .subscribing-form-email
+        @include input (256px, $bc_four, $text_search)
+        border-radius: 25px 0 0 25px
+        margin-left: 10px
+        margin-right: -3px
+        padding: 0 0 0 25px
+        border: 0
+        margin-bottom: 2px
+
+      .subscribing-form-btn
+        @include input(85px, $border_one, $bc_three)
+        border-radius: 0 25px 25px 0
+        text-align: center
+        padding: 0
+        border: 0
+        &:hover
+          background-color: #df5365
+          cursor: pointer
+        &:active
+          background-color: $active
+
+/* ========== footer ========== */
+
+.page-footer
+  min-height: 79px
+  @extend %padding_content
+  @extend %flex_spbetween
+  background-color: $text_search
+
+  .footer-copyright
+    @include txt(16px, 400, 19px, $features_txt)
+
+  .footer-social-list
+    @extend %flex_spbetween
+    @include size(128px,32px)
+    margin-top: 7px
+    background-color: $text_search
+    & .fab
+      text-decoration: none
+      height: 32px
+      background-color: $text_search
+      color: $bc_three
+      font-size: 32px
+      &:hover
+        color: $border_one
+      &:active
+        color: $active
+
+
+/* ========== Catalog page ========== */
+/* ========== header ========== */
+
+.menu-btn-non-index
+  @extend %icon
+  &:hover,
+  &:active
+    cursor: not-allowed
+    fill: $icon
+
+/* ========== arrivals ========== */
+
+.arrivals
+  @extend %flex_spbetween
+  @extend %padding_content
+  background-color: $bc_five
+  min-height: 148px
+
+  .arrivals-title
+    @include txt(24px, 400, 29px, $border_one)
+    text-transform: uppercase
+
+.arrivals-breadcrumbs
+  width: 209px
+  @extend %flex_spbetween
+  text-transform: uppercase
+  @include txt (14px, 700, 17px, $border_one)
+  cursor: default
+  & li
+    display: inline
+  & li+li:before
+    padding: 4px
+    @include txt (14px, 300, 17px, $breadcrumbs)
+    content: "/\00a0"
+  & .breadcrumbs-link
+    @include txt (14px, 300, 17px, $breadcrumbs)
+    &:hover
+      color: $border_one
+    &:active
+      color: $breadcrumbs
+
+.arrivals-breadcrumbs .breadcrumbs-link
+  text-decoration: none
+  color: $breadcrumbs
+
+/* ========== products ========== */
+
+.catalog-prod
+  min-height: 2070px
+
+.products-nav
+  display: flex
+  justify-content: center
+  width: 100%
+
+  .topmenu > li
+    display: inline-block
+    position: relative
+
+.fas-submenu
+  padding-left: 10px
+
+.submenu
+  @extend %catalog-submenu
+  @include size(361px, 535px)
+  margin: -43.6% 0 0 -25%
+
+.submenu-form
+  @extend %catalog-submenu
+  @include size(79px, 103px)
+  margin: 10% 0 0 -17%
+  @include txt (14px, 400, 16px, $li_two)
+  & input
+    margin: 7px 5px 7px 8px
+  & p
+    display: flex
+    align-items: center
+
+.submenu-dropdown:hover .submenu,
+.submenu-dropdown:hover .submenu-form
+  visibility: visible
+
+.submenu-dropdown
+  @include txt (14px, 400, 17px, $li_two)
+  text-transform: uppercase
+  &:hover
+    color: $border_one
+  & .filter-svg
+    margin-left: 8px
+    fill: $li_two
+
+.topmenu
+  margin-right: 28px
+  margin-bottom: 34px
+  cursor: default
+  &:first-child
+    margin-left: 16px
+    margin-right: 305px / 1140px * 100%
+
+.submenu-list .submenu-points
+  margin-top: 16px
+  margin-left: 18px
+  color: $li_two
+  width: 312px
+  & .points
+    @include size (312px, 37px)
+    display: flex
+    align-items: center
+    border-left: 5px solid $border_one
+    border-bottom: 1px solid $border_two
+    padding-left: 11px
+  &:first-child
+    color: $border_one
+
+
+
+.sub-points
+  text-transform: none
+  font-weight: 400
+  margin-top: 24px
+  padding-left: 17px
+  & li
+    border: none
+    margin-bottom: 11px
+    width: 100%
+    & a
+      text-decoration: none
+      color: $li_two
+      &:hover
+        text-decoration: underline
+      &:active
+        text-decoration: none
+    &:last-child
+      margin-bottom: 24px
+
+.sub-filter
+  @include txt (14px, 600, 17px, $border_one)
+  text-transform: uppercase
+  display: block
+  margin: 13px 0 0 17.5px
+  & .sub-filter-svg
+    fill: $border-one
+    margin-left: 8px
+
+.catalog-pagination
+  display: flex
+  justify-content: space-around
+  @include size(284px, 44px)
+  margin-top: 48px
+  border: 1px solid $border_two
+  align-items: center
+  & a
+    @include txt(16px, 300, 19px, $pagination)
+    text-decoration: none
+    &:hover
+      color: $li_one
+    &:active
+      color: $border_one
+  .active
+    color: $border_one
+
+.cat-pag-angle
+  color: $li_one
+  &:hover
+    color: $border_one
+  &:active
+    color: $li_one
+
+.angle-btn
+  background-color: $bc_three
+  border: none
+  cursor: pointer
+
+
+/* ========== Product page ========== */
+
+/* ========== product-banner ========== */
+
+.product-banner
+  min-height: 777px
+  @extend %flex_spbetween
+  background-color: $bc_prod_banner
+  & img
+    margin-bottom: 25px
+
+.slide-btn
+  @include size(47px, 47px)
+  background-color: $slide_btn
+  & .cat-pag-angle
+    font-size: 25px
+
+.slide-btn:hover .cat-pag-angle
+  color: $border-one
+
+.slide-btn:active .cat-pag-angle
+  color: $li_one
+
+/* ========== product-card ========== */
+
+.product-prod
+  min-height: 1350px
+  align-items: normal
+  & .products-block
+    margin-top: 80px
+
+.product-card
+  min-height: 600px
+  @extend %column_content
+  border: 1px solid $border_three
+  margin-top: -17.5%
+  background-color: $bc_three
+  & .prod-card-title
+    @include txt (14px, 300, 17px, $border_one)
+    text-transform: uppercase
+    margin-bottom: 12px
+    text-align: center
+  & .card-line
+    @include line (63px, 3px, $border_one, 12px)
+  & .prod-card-subtitle
+    @include txt (18px, 300, 22px, $card_subtitle)
+    text-transform: uppercase
+    margin-bottom: 48px
+  & .prod-card-description
+    @include txt (14px, 300, 17px, $card_description)
+    max-width: 555px / 1140px * 100%
+    margin-bottom: 32px
+    text-align: center
+  & .prod-card-price
+    @include txt (24px, 300, 29px, $border_one)
+    text-align: center
+    &:after
+      padding-bottom: 64px
+      box-sizing: border-box
+      display: block
+      content: ''
+      @include line (642px, 1px, $border_three, 64px)
+  & .card-submenu
+    @extend %flex_spbetween
+    width: 373px
+    margin-bottom: 48px
+    & .submenu-dropdown:hover
+      cursor: default
+
+.prod-add-cart-btn
+  position: static
+  transform: none
+  color: $border_one
+  border: 1px solid $border_one
+  visibility: visible
+  background-color: $bc_three
+  & svg
+    fill: $border_one
+.prod-add-cart-btn:hover
+  border: 1px solid $border_one
+  background-color: $border_one
+  color: $bc_three
+  & svg
+    fill: $bc_three
+.prod-add-cart-btn:active
+  background-color: $active
+  border-color: $active
+  color: $bc_three
+  & svg
+    fill: $bc_three
+
+/* ========== Cart page ========== */
+
+/* ========== shopping-cart ========== */
+
+.shopping-cart
+  min-height: 900px
+  background-color: $bc_three
+  @extend %padding_content
+  @extend %flex_spbetween
+  align-items: flex-start
+  margin-top: 98px
+
+  & .carts-product
+    @include size (652px, 774px)
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.shopping-cart-product
+  margin-bottom: 40px
+  @extend %flex_spbetween
+  align-items: flex-start
+  box-shadow: 20px 20px 30px rgba(0,0,0,0.2)
+
+  & .close-btn
+    margin: 25px 25px 0 0
+
+.cart-product-text
+  display: flex
+  flex-direction: column
+  margin: 22px 0 0 0
+  width: 280px
+
+  & .title-cart-content
+    @include txt(24px, 400, 29px, $bc_one)
+    width: 200px
+    text-transform: uppercase
+    padding-bottom: 42px
+    box-sizing: border-box
+
+  & .cart-product-characteristics
+    @include txt(22px, 400, 26px, $bc_one)
+    padding-bottom: 7px
+    box-sizing: border-box
+
+  & .quantity
+    @include size(35px, 24px)
+    margin-left: 15px
+    @include txt(22px, 400, 26px, $bc_one)
+    text-align: center
+    padding-left: 15px
+
+.shopping-cart-btn
+  @extend %flex_spbetween
+
+.shopping-cart-btn-modal
+  justify-content: center
+
+  & .cart-content-btn
+    margin-top: 42px
+    @include txt(14px, 300, 17px, $li_one)
+    text-transform: uppercase
+    @include size(225px, 50px)
+    border: 1px solid $border_four
+    background-color: $bc_three
+    &:hover
+      background-color: $border_four
+      border: $li_one
+      color: $bc_three
+    &:active
+      border: $border_four
+      background-color: $bc_three
+      color: $li_one
+
+.cart-form,
+.shopping-cart-form
+  display: flex
+  flex-direction: column
+  width: 360px
+
+.shopping-cart-form
+  margin-bottom: 57px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  min-height: 272px
+  & .cart-form-title
+    @include txt(16px, 300, 19px, $bc_one)
+    text-transform: uppercase
+  & .cart-form-input
+    height: 45px
+    border: 1px solid $border_four
+    @include txt(13px, 300, 16px, $bc_one)
+    padding-left: 15px
+  & .cart-form-btn
+    @include size(101px, 35px)
+    text-transform: uppercase
+    @include txt(11px, 300, 13px, $quote_btn)
+    background-color: $bc_three
+    border: 1px solid $border_four
+    &:hover
+      background-color: $border_four
+      color: $bc_three
+    &:active
+      border-color: $bc_three
+      color: $quote_btn
+      background-color: $bc_three
+
+.shopping-cart-checkout
+  padding: 43px
+  box-sizing: border-box
+  min-height: 214px
+  background-color: $bc_seven
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: flex-end
+  text-transform: uppercase
+  & .cart-checkout-subtotal, .shop-cart-price
+    @include txt(11px, 400, 13px, $quote_btn)
+  & .shop-cart-price, .span-colored
+    padding-left: 30px
+    box-sizing: border-box
+  & .cart-checkout-grandtotal
+    @include txt(16px, 300, 19px, $quote_btn)
+    text-align: end
+    &:after
+      width: 273px
+      padding-bottom: 13px
+      box-sizing: border-box
+      display: block
+      content: ''
+      border-bottom: 1px solid $border_five
+  & .span-colored
+    font-weight: 700
+  & .checkout-btn
+    text-transform: uppercase
+    width: 100%
+    min-height: 50px
+    border: 1px solid $border_one
+    background-color: $border_one
+    @include txt(16px, 300, 19px, $bc_three)
+    &:hover
+      background-color: $bc_three
+      color: $border_one
+    &:active
+      background-color: $active
+      color: $bc_three
+      border-color: $active
+
+/* ========== Registration page ========== */
+
+/* ========== registration ========== */
+
+.registration
+  min-height: 600px
+  background-color: $bc_three
+  @extend %flex_spbetween
+  @extend %padding_content
+  margin-top: 64px
+  align-items: flex-start
+
+.registration-form
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin-right: 128px
+  min-height: 510px
+  & .registration-form-name, .regist-login
+    width: 100%
+    height: 45px
+    border: 1px solid $border_four
+    @include txt(13px, 300, 16px, $regist_input_txt)
+    padding-left: 15px
+    box-sizing: border-box
+  & .registration-form-name, .regist-login, .registration-name, .registration-login
+    margin-bottom: 20px
+  & .registration-name, .registration-login
+    @include txt(16px, 300, 19px, $bc_one)
+  & .regist-gender
+    @include txt(11px, 300, 13px, $li_one)
+  & .regist-p
+    @include txt(13px, 300, 16px, $regist_input_txt)
+
+.registration-btn
+  @include size(167px, 50px)
+  text-transform: uppercase
+  background-color: $border_one
+  border: 1px solid $border_one
+  @include txt(14px, 400, 17px, $bc_three)
+  & i
+    margin-left: 10px
+  &:hover
+    background-color: $bc_three
+    color: $border_one
+  &:active
+    background-color: $active
+    border-color: $active
+    color: $bc_three
+
+.registration-description
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  @include size(700px, 334px)
+  @include txt(24px, 300, 29px, $li_one)
+  & i
+    margin-right: 15px
+  & .description-title
+    text-transform: uppercase
+  & .description-title, .description-desc
+    margin-bottom: 15px
+
+
+
+
+@media (max-width: 1515px)
+  .catalog-prod
+    min-height: 2601px
+  .product-last
+    display: none
+  .products-nav
+    margin-top: 24px
+  .products-block
+    justify-content: space-around
+  .catalog-pagination
+    margin-bottom: 63px
+
+@media (max-width: 1440px)
+  .shopping-cart
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding: 4%
+  .shopping-cart-btn
+    justify-content: space-around
+    margin-bottom: 64px
+  .cart-form
+    flex-direction: row
+    justify-content: space-between
+    width: 100%
+    align-items: center
+    padding: 0 16px / 1600px * 100%
+  .shopping-cart-form,
+  .shopping-cart-checkout
+    width: 48%
+  .shopping-cart-checkout
+    max-height: 214px
+    margin-bottom: 41px
+
+@media (max-width: 1280px)
+  .features
+    padding: 0 16px / 1600px * 100%
+  .feedback
+    padding: 0 106px / 1600px * 100%
+
+@media (max-width: 1024px)
+  .banner
+    min-height: 368px
+  .banner img[alt='fashionable man']
+    height: 368px
+  .banner-title
+    margin: 0 0 137px 39px / 1600px * 100%
+  .banner-txt-title
+    @include txt(44px, 900, 53px, $bc_one)
+  .banner-txt-subtitle
+    @include txt(24px, 700, 29px, $bc_one)
+  .products,
+  .registration
+    padding: 0 16px / 1600px * 100%
+  .features,
+  .feedback
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+  .feedback .feedback-review
+    margin-bottom: 0
+  .registration-form
+    margin-right: 22px
+  .registration-form,
+  .registration-description
+    width: 50%
+    font-size: 16px
+    font-weight: 300
+    line-height: 19px
+
+@media (max-width: 768px)
+  .arrivals
+    padding: 0 32px / 1600px * 100%
+  .page-header,
+  .page-footer
+    padding: 0 32px
+  .categories
+    padding: 20px 16px
+    box-sizing: border-box
+  .categories
+    min-height: 344px
+  .categories .item-for-women,
+  .categories .item-for-men,
+  .categories .item-for-kids
+    max-width: 233px / 736px * 100%
+    @include size(100%, 168px)
+    background-size: cover
+  .categories .item-accessories
+    margin-top: 15px
+    min-height: 116px
+    background-size: cover
+  .features
+    flex-direction: column
+    min-height: 610px
+    padding-top: 28px
+    padding-bottom: 34px
+    box-sizing: border-box
+    & .features-item
+      margin-bottom: 30px
+  .feedback
+    min-height: 614px
+    background-size: cover
+
+
+@media (max-width: 735px)
+  .feedback-catalog
+    margin-top: 64px
+
+
+@media (max-width: 680px)
+  .banner
+    padding-left: 20px
+  .banner-txt-title
+    @include txt(38px, 900, 46px, $bc_one)
+  .banner-txt-subtitle
+    @include txt(20px, 700, 24px, $bc_one)
+  .page-header .logo-and-search .search-form
+    position: absolute
+    margin-top: 50px
+    margin-left: -122px
+  .page-header .logo-and-search .search-text
+    border: 2px solid $border_one
+  .topmenu:first-child
+    margin-right: 205px / 1140px * 100%
+  .arrivals-cart
+    flex-direction: column
+    justify-content: center
+  .shopping-cart
+    margin-top: 29px
+    & .carts-product
+      align-items: center
+      min-height: 640px
+  .cart-form
+    flex-direction: column
+  .shopping-cart-form,
+  .shopping-cart-checkout
+    width: 100%
+  .shopping-cart-product
+    max-width: 358px
+    min-height: 18px
+    margin-bottom: 0
+    & .products-item-photo
+      height: 188px
+    & .close-btn
+      margin: 14px 4px 0 14px
+  .cart-product-text
+    margin-top: 10px
+    & .title-cart-content
+      font-size: 16px
+      font-weight: 400
+      line-height: 19px
+      padding-bottom: 26px
+      width: 90%
+    & .cart-product-characteristics,
+    & .quantity
+      font-size: 16px
+      font-weight: 400
+      line-height: 17px
+    & .quantity
+      @include size(25px, 14px)
+  .shopping-cart-btn
+    width: 55%
+    & .cart-content-btn
+      @include txt(12px, 400, 14px, $li_one)
+      @include size(175px, 33px)
+
+
+
+@media (max-width: 520px)
+  .page-header .logo-and-search .search-form
+    margin-left: -91px
+  .for-fashionable-man
+    display: none
+  .banner
+    justify-content: center
+    align-items: center
+  .banner-title
+    width: 263px
+    margin: auto
+  .page-header .logo-and-search .logo
+    margin-right: 10px
+  .arrivals
+    flex-direction: column
+    justify-content: center
+    & .arrivals-title
+      margin-bottom: 32px
+  .topmenu
+    justify-content: space-around
+    margin-right: 14px
+  .topmenu:first-child
+    margin-right: 85px / 1140px * 100%
+    margin-left: 0
+  .filter
+    display: none
+  .submenu-dropdown .filter-svg
+    width: 37.5px
+    height: 25px
+  .submenu
+    margin-top: -75.6%
+  .link-item .categories-item-title
+    font-size: 20px
+  .feedback .subscribing .subscribing-title
+    font-size: 22px
+  .feedback .subscribing .subscribing-subtitle
+    font-size: 15px
+  .product-card .prod-card-description
+    max-width: 1040px / 1140px * 100%
+  .registration
+    flex-direction: column
+    align-items: center
+  .registration-form
+    margin-right: 0
+  .registration-form,
+  .registration-description
+    width: 98%
+    margin-bottom: 40px
+
+
+@media (max-width: 375px)
+  .categories
+    padding-left: 16px
+    padding-right: 16px
+    box-sizing: border-box
+    flex-direction: column
+    justify-content: center
+    align-items: center
+  .categories .item-for-women,
+  .categories .item-for-men,
+  .categories .item-for-kids
+    margin-bottom: 15px
+    max-width: 343px
+    @include size(100%, 247px)
+    background-size: cover
+  .categories .item-accessories
+    margin-top: 15px
+    min-height: 111px
+    background-size: cover
+  .feedback .subscribing .subscribing-title
+    font-size: 32px
+  .feedback .subscribing .subscribing-subtitle
+    font-size: 12px
+  .feedback .subscribing .subscribing-form .subscribing-form-email
+    width: 230px
+  .page-footer
+    display: flex
+    flex-direction: column-reverse
+    justify-content: center
+    align-items: center
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
