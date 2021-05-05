@@ -185,7 +185,7 @@ div.container
   box-sizing: border-box
   min-height: 75px
   background-color: $bc_one
-  position: sticky
+  //position: sticky
   top: 0
   z-index: 10
   .logo-and-search
@@ -265,6 +265,9 @@ div.container
 .product-bio
   display: flex
 
+.product-bio-img
+  height: 100px
+
 .product-desc
   max-width: 150px
 
@@ -278,6 +281,10 @@ div.container
 
 .right-block
   text-align: right
+  padding-top: 50px
+  display: flex
+  flex-direction: column
+  padding-left: 16px
 
 .product-price
   margin-left: 30px
@@ -304,6 +311,9 @@ div.container
   color: black
   width: 300px
 
+.cart-total,
+.cart-item
+  margin-bottom: 16px
 
 .invisible
   display: none
@@ -325,6 +335,7 @@ div.container
   @extend %catalog-submenu
   position: absolute
   left: 100%
+  top: -5em
   display: flex
   flex-direction: column
   @include size (230px, 767px)
@@ -1018,27 +1029,35 @@ div.container
     text-align: center
     padding-left: 15px
 
+.shopping-cart-btn-modal
+  text-decoration: none
+  margin: 0
+
+.btn-continue
+  @extend %flex_spbetween
+  justify-content: center
+
 .shopping-cart-btn
   @extend %flex_spbetween
 
-.shopping-cart-btn-modal
-  justify-content: center
-
-  & .cart-content-btn
-    margin-top: 42px
-    @include txt(14px, 300, 17px, $li_one)
-    text-transform: uppercase
-    @include size(225px, 50px)
-    border: 1px solid $border_four
+.cart-content-btn
+  margin-top: 42px
+  @include txt(14px, 300, 17px, $li_one)
+  text-transform: uppercase
+  @include size(225px, 50px)
+  border: 1px solid $border_four
+  background-color: $bc_three
+  &:hover
+  	background-color: $border_four
+    border: $li_one
+    color: $bc_three
+  &:active
+    border: $border_four
     background-color: $bc_three
-    &:hover
-      background-color: $border_four
-      border: $li_one
-      color: $bc_three
-    &:active
-      border: $border_four
-      background-color: $bc_three
-      color: $li_one
+    color: $li_one
+
+.cart-content-btn-modal
+  margin-top: 0
 
 .cart-form,
 .shopping-cart-form
@@ -1203,6 +1222,8 @@ div.container
   .shopping-cart-btn
     justify-content: space-around
     margin-bottom: 64px
+  .shopping-cart-btn-modal
+  	margin-bottom: 0
   .cart-form
     flex-direction: row
     justify-content: space-between

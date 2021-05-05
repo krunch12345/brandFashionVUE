@@ -10,7 +10,10 @@
     "start": "gulp watch",
     "build": "gulp build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1"
+  },
   "devDependencies": {
     "autoprefixer": "^9.5.1",
     "browser-sync": "^2.26.3",
