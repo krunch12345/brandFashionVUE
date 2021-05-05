@@ -1,81 +1,109 @@
-'use strict'
+const app = new Vue(
+    {
+        el: '#app',
+        data: {
+            products: [],
+            cartData: '',
+            showedProducts:[],
+            cartGoods:[],
+        },
+        methods: {
+            fetchProducts(url){
+                return fetch(url)
+                    .then(answer => answer.json())
+                    .catch(error => console.log(error));
+            },
+            filterGoods(searchLine){
+                if (searchLine) {
+                    this.showedProducts = this.products.filter(value => value.product_name.toLowerCase().includes(searchLine.toLowerCase()))
+                } else {
+                    this.showedProducts = this.products;
+                }
+            },
+            postJson(url, data){
+                console.log(url)
 
-const API = 'https://raw.githubusercontent.com/krunch12345/brandFashionVUE/main/src/jsons/'
+                return fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(result => result.json())
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            putJson(url, data){
+                console.log(url)
+                return fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(result => result.json())
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            remove(url, data){
+                return fetch(url, {
+                    method: 'DELETE',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(result => {
+                        result.json()
+                        this.fetchProducts('/api/cart')
+                            .then(data => {
+                                console.log(data)
+                                this.cartGoods.push({amount: data.amount, countGoods: data.countGoods});
+                                this.cartGoods[1] = data.contents;
+                            });
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            },
+            addProduct(item){
+                console.log(this.cartGoods[1])
 
-let app = new Vue({
-    el: '#app',
-    data: {
-        catalogUrl: '/catalogData.json',
-        products: [],
-        cartShown: false,
-        userSearch: '',
-        filtered: []
-    },
-    components: {cart, products, filter_el},
-    methods: {
-        getJson(url) {
-            return fetch(url)
-                .then(result => result.json())
+                let find = this.cartGoods[1].find(el => el.id_product === item.id_product);
+                if(find){
+                    this.putJson(`/api/cart/${find.id_product}`, {quantity: 1})
+                        .then(data => {
+                            if(data.result === 1){
+                                find.quantity++
+                            }
+                        })
+                } else {
+                    const prod = Object.assign({quantity: 1}, item);
+                    this.postJson(`/api/cart`, prod)
+                        .then(data => {
+                            if(data.result === 1){
+                                this.cartGoods[1].push(prod);
+                            }
+                        })
+                }
+            }
+        },
+        mounted() {
+            this.fetchProducts('/api/products')
+                .then(data => {
+                    this.products = [...data];
+                    this.showedProducts = this.products;
+                });
+            this.fetchProducts('/api/cart')
+                .then(data => {
+                    this.cartGoods.push({amount: data.amount, countGoods: data.countGoods});
+                    this.cartGoods.push(data.contents);
+                });
+
         },
     }
-})
-
-
-// const app = new Vue({
-//     el: '#app',
-//     data: {
-//         catalogUrl: '/catalogData.json',
-//         products: [],
-//         userSearch: '',
-//         showCart: false,
-//         cartUrl: '/getBasket.json',
-//         cartItems: [],
-//         filtered: [],
-//         imgCart: 'https://via.placeholder.com/100',
-//     },
-//     methods: {
-//         getJson(url) {
-//             return fetch(url)
-//                 .then(result => result.json())
-//                 .catch(error => console.log(error))
-//         },
-//         addProduct(item) {
-//             let find = this.cartItems.find(el => el.id === item.id)
-//             if (find) {
-//                 find.quantity++
-//             } else {
-//                 const prod = Object.assign({quantity: 1}, item)
-//                 this.cartItems.push(prod)
-//             }
-//         },
-//         remove(item) {
-//             if (item.quantity > 1) {
-//                 item.quantity--
-//             } else {
-//                 this.cartItems.splice(this.cartItems.indexOf(item), 1)
-//             }
-//         },
-//         filter() {
-//             let regexp = new RegExp(this.userSearch, 'i')
-//             this.filtered = this.products.filter(el => regexp.test(el.title))
-//         }
-//     },
-//
-//     mounted() {
-//         this.getJson(`${API + this.cartUrl}`)
-//             .then(data => {
-//                 for (let item of data.contents) {
-//                     this.cartItems.push(item)
-//                 }
-//             })
-//         this.getJson(`${API + this.catalogUrl}`)
-//             .then(data => {
-//                 for (let item of data) {
-//                     this.products.push(item)
-//                     this.filtered.push(item)
-//                 }
-//             })
-//     }
-// })
-
-
+)
